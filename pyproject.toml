@@ -1,0 +1,219 @@
+# See https://setuptools.readthedocs.io/en/latest/build_meta.html
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "resp_gen_ai"
+version = "0.0.1-dev"
+description = "A comprehensive benchmark for responsible generative AI."
+readme = "README.md"
+authors = [
+    { name = "shuo chen", email = "chenshuo.cs@outlook.com"},
+    {name = "jindong gu", email = "jindong.gu@outlook.com"}
+]
+maintainers = [
+    { name = "shuo chen", email = "chenshuo.cs@outlook.com"},
+    {name = "jindong gu", email = "jindong.gu@outlook.com"}
+]
+
+# See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#classifiers
+# Search tags using the controlled vocabulary at https://pypi.org/classifiers
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Framework :: Pytest",
+    "Framework :: tox",
+    "Framework :: Sphinx",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3 :: Only",
+    # TODO add your topics from the Trove controlled vocabulary (see https://pypi.org/classifiers)
+]
+keywords = [
+    "snekpack", # please keep this keyword to credit the cookiecutter-snekpack template
+    "cookiecutter",
+    # TODO add your own free-text keywords
+]
+
+# License Information. This can be any valid SPDX identifiers that can be resolved
+# with URLs like https://spdx.org/licenses/MIT
+# See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license
+license = { file = "LICENSE" }
+
+requires-python = ">=3.8"
+dependencies = [
+    "more_itertools", # missing from itertools in stdlib
+    "tqdm", # progress bars
+    "furo", # theme for Sphinx
+    
+    "click",
+    "more_click",
+    "click",
+    "more_click",
+    "torch",
+    "torchvision",
+    "ipdb",
+    "openai",
+    "datasets",
+    "transformers",
+    "Pillow",
+    "vertexai",
+    "google-api-python-client",
+    "imageio",
+    "seaborn",
+    "matplotlib",
+    "scipy",
+    "protobuf",
+    "sentencepiece",
+    "tiktoken",
+    "transformers_stream_generator",
+    "einops",
+    "nltk",
+    "rouge-score",
+    "accelerate==1.6.0",
+    "qwen_vl_utils"
+    "peft"
+    "ruff",  # for linting
+]
+
+[project.optional-dependencies]
+tests = [
+    "pytest",
+    "coverage",
+]
+docs = [
+    "sphinx",
+    "sphinx-rtd-theme",
+    "sphinx-click", 
+    "sphinx_automodapi",
+    # Include if your project uses Pydantic:
+    # "autodoc_pydantic",
+    # To include LaTeX comments easily in your docs.
+    # If you uncomment this, don't forget to do the same in docs/conf.py
+    # texext
+]
+
+# See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#urls
+[project.urls]
+"Bug Tracker" = "https://github.com/chenxshuo/resp_gen_ai/issues"
+Homepage = "https://github.com/chenxshuo/resp_gen_ai"
+Repository = "https://github.com/chenxshuo/resp_gen_ai.git"
+Documentation = "https://resp_gen_ai.readthedocs.io"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+# this implicitly sets `packages = ":find"`
+where = ["src"]  # list of folders that contain the packages (["."] by default)
+
+# See https://setuptools.pypa.io/en/latest/userguide/datafiles.html
+[tool.setuptools.package-data]
+"*" = ["*.*"]
+
+
+[project.scripts]
+resp_gen_ai = "resp_gen_ai.cli:main"
+
+
+[tool.cruft]
+skip = [
+    "**/__init__.py",
+    "tests/*"
+]
+
+# MyPy, see https://mypy.readthedocs.io/en/stable/config_file.html
+[tool.mypy]
+plugins = [
+    "pydantic.mypy",
+]
+
+# Doc8, see https://doc8.readthedocs.io/en/stable/readme.html#ini-file-usage
+[tool.doc8]
+max-line-length = 120
+
+# Coverage, see https://coverage.readthedocs.io/en/latest/config.html
+[tool.coverage.run]
+branch = true
+source = [
+    "resp_gen_ai",
+]
+omit = [
+    "tests/*",
+    "docs/*",
+]
+
+[tool.coverage.paths]
+source = [
+    "src/resp_gen_ai",
+    ".tox/*/lib/python*/site-packages/resp_gen_ai",
+]
+
+[tool.coverage.report]
+show_missing = true
+exclude_lines = [
+    "pragma: no cover",
+    "raise NotImplementedError",
+    "if __name__ == \"__main__\":",
+    "if TYPE_CHECKING:",
+    "def __str__",
+    "def __repr__",
+]
+
+[tool.black]
+line-length = 100
+target-version = ["py38", "py39", "py310", "py311"]
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 100
+include_trailing_comma = true
+reverse_relative = true
+
+[tool.ruff]
+line-length = 100
+extend-include = ["*.ipynb"]
+
+# some mllms code repo are taken from other repos
+exclude = ["src/resp_gen_ai/models/mllms/llama_adapter_v2_utils/*", "src/resp_gen_ai/models/mllms/llava/*", "src/resp_gen_ai/models/mllms/llava_misc/*",
+            "src/resp_gen_ai/models/mllms/minigpt4_misc/*", "src/resp_gen_ai/models/mllms/minigpt4_utils/*", "src/resp_gen_ai/models/mllms/mplug_owl2/*"]
+
+[tool.ruff.lint]
+# See https://docs.astral.sh/ruff/rules
+extend-select = [
+    "F", # pyflakes
+    "E", # pycodestyle errors
+    "W", # pycodestyle warnings
+    "C90", # mccabe
+    "I", # isort
+    "UP", # pyupgrade
+    "D", # pydocstyle
+    "B", # bugbear
+    "S", # bandit
+    "T20", # print
+    "N", # pep8 naming
+    "ERA", # eradicate commented out code
+    "NPY", # numpy checks
+    "RUF", # ruff rules
+]
+ignore = [
+    "D105", # Missing docstring in magic method
+    "E203", # Black conflicts with the following
+]
+
+# See https://docs.astral.sh/ruff/settings/#per-file-ignores
+[tool.ruff.lint.per-file-ignores]
+# Ignore commented out code in Sphinx configuration file
+"docs/source/conf.py" = ["ERA001"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "pep257"

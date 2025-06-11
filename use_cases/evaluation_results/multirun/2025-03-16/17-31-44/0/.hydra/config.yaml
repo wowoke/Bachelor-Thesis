@@ -1,0 +1,16 @@
+model:
+  testing_model: Eureka_32b
+  model_path: /dss/dssfs05/pn39qo/pn39qo-dss-0001/.cache/huggingface/hub/models--FanqingM--MM-Eureka-Zero-38B/snapshots/99ab88d1ceace45a1d3225cd1df0cc86a1c8ee35
+judge_model:
+  judge_model_path: /dss/dssfs05/pn39qo/pn39qo-dss-0001/.cache/huggingface/hub/models--meta-llama--Llama-Guard-3-1B/snapshots/acf7aafa60f0410f8f42b1fa35e077d705892029
+  judge_testing_model: Llama-Guard-3-1B
+data_base:
+  jailbreakmethod: Fig_step
+  csv_path: /dss/dssfs05/pn39qo/pn39qo-dss-0001/di93zun2/zhongyi/FigStep/data/question/SafeBench-Tiny.csv
+  image_path: /dss/dssfs05/pn39qo/pn39qo-dss-0001/di93zun2/zhongyi/FigStep/data/images/SafeBench-Tiny
+  database: SafeBench-Tiny
+experiment_name: my_experiment
+seed: 42
+logging:
+  level: INFO
+  save_path: ./results

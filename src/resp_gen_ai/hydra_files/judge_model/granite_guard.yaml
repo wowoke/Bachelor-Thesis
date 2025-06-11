@@ -1,0 +1,5 @@
+
+
+
+judge_model_path : "/dss/dssfs05/pn39qo/pn39qo-dss-0001/.cache/huggingface/hub/models--ibm-granite--granite-guardian-3.2-5b/snapshots/43e35985198a4cc97db3d489455aa96d1dd8a80e"
+judge_testing_model: "granite_guardian_3.2_5b"

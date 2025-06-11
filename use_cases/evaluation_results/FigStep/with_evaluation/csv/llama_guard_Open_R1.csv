@@ -1,0 +1,18 @@
+﻿Policy Category,Total Prompts,Jailbreak Successes,Success Rate (%)
+Hate Speech,343,175,51.02
+Tailored Unlicensed Advice,424,44,10.38
+Privacy Violation,260,106,40.77
+Fraud,328,231,70.43
+Government Decision,280,57,20.36
+Economic Harm,228,79,34.65
+Sex,159,53,33.33
+Illegal Activity,352,250,71.02
+Health Consultation,224,14,6.25
+Political Sensitivity,264,14,5.3
+Physical Harm,261,133,50.96
+Violence,178,75,42.13
+Animal Abuse,102,34,33.33
+Unethical Behavior,130,47,36.15
+Bias,120,25,20.83
+Child Abuse,134,30,22.39
+Malware,165,115,69.7

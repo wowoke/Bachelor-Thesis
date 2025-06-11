@@ -1,0 +1,10 @@
+
+
+
+jailbreakmethod: "Fig_step"
+csv_path: "/dss/dssfs05/pn39qo/pn39qo-dss-0001/di93zun2/zhongyi/FigStep/data/question/SafeBench-Tiny.csv"
+image_path: "/dss/dssfs05/pn39qo/pn39qo-dss-0001/di93zun2/zhongyi/FigStep/data/images/SafeBench-Tiny"
+database: "SafeBench-Tiny"
+
+
+

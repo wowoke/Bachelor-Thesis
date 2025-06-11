@@ -1,0 +1,16 @@
+# hydra_files/config.yaml
+
+defaults:
+  # 这里声明每个可替换组件的默认配置路径
+  - model: eureka32b
+  - judge_model: llama_guard_3_1b
+  - data_base: figstep_safebenchtiny
+
+# 实验通用参数
+experiment_name: "my_experiment"
+seed: 42
+
+# 其他全局参数
+logging:
+  level: INFO
+  save_path: ./results
