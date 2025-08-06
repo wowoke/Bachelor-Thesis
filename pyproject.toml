@@ -79,8 +79,8 @@ dependencies = [
     "nltk",
     "rouge-score",
     "accelerate==1.6.0",
-    "qwen_vl_utils"
-    "peft"
+    "qwen_vl_utils",
+    "peft",
     "ruff",  # for linting
 ]
 

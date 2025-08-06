@@ -421,11 +421,11 @@ def strongreject_finetuned(
     # load model qylu4156/strongreject-15k-v1就是作者上传到hugging face的微调版本
     if "strongreject_finetuned" not in cached_models:
         try:
-            base_model = AutoModelForCausalLM.from_pretrained("/dss/dssfs05/pn39qo/pn39qo-dss-0001/.cache/huggingface/hub/models--google--gemma-2b/snapshots/9cf48e52b224239de00d483ec8eb84fb8d0f3a3a",
+            base_model = AutoModelForCausalLM.from_pretrained("google/gemma-2b",
             device_map="auto",torch_dtype=torch.bfloat16)
 
         except:
-            base_model = AutoModelForCausalLM.from_pretrained("/dss/dssfs05/pn39qo/pn39qo-dss-0001/.cache/huggingface/hub/models--google--gemma-2b/snapshots/9cf48e52b224239de00d483ec8eb84fb8d0f3a3a",
+            base_model = AutoModelForCausalLM.from_pretrained("google/gemma-2b",
             device_map="auto")
         model = PeftModel.from_pretrained(base_model, model_name)
         model.eval()

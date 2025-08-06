@@ -1,0 +1,26 @@
+model:
+  arch: mini_gpt4
+  model_type: pretrain_vicuna
+  freeze_vit: True
+  freeze_qformer: True
+  max_txt_len: 160
+  end_sym: "###"
+  low_resource: False
+  prompt_path: "/dss/dssmcmlfs01/pn39qo/pn39qo-dss-0000/di93zun/zhongyi/RedTeamingGPT4V/cache/vlms/minigpt4/prompts/alignment.txt"
+  prompt_template: '###Human: {} ###Assistant: '
+  ckpt: '/dss/dssmcmlfs01/pn39qo/pn39qo-dss-0000/di93zun/zhongyi/RedTeamingGPT4V/cache/vlms/minigpt4/ckpts/pretrained_minigpt4-7B.pth'
+  llama_model: "/dss/dssmcmlfs01/pn39qo/pn39qo-dss-0000/.cache/huggingface/hub/models--Vision-CAIR--vicuna-7b/snapshots/0abeb8872d75421e58ec146c39b31f5dc78c7613"
+
+
+datasets:
+  cc_sbu_align:
+    vis_processor:
+      train:
+        name: "blip2_image_eval"
+        image_size: 224
+    text_processor:
+      train:
+        name: "blip_caption"
+
+run:
+  task: image_text_pretrain

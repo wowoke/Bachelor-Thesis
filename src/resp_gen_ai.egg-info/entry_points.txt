@@ -1,0 +1,2 @@
+[console_scripts]
+resp_gen_ai = resp_gen_ai.cli:main

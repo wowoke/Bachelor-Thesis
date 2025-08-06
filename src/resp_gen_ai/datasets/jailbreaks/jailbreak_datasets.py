@@ -4,7 +4,7 @@ import json
 import logging
 import os
 import torch
-from .pre_post_process import INPUT_FUNCTON_DICT, OUTPUT_FUNCTION_DICT
+# from .pre_post_process import INPUT_FUNCTON_DICT, OUTPUT_FUNCTION_DICT
 from torch.utils.data import Dataset
 from tqdm import tqdm
 import pandas as pd
@@ -119,8 +119,8 @@ class JailbreakMLLMDataset(RespGenAIDataset):
 
 
 
-# 添加新的多模态数据集类
-class SafeBenchDataset(torch.utils.data.Dataset):
+
+class REBenchDataset(torch.utils.data.Dataset):
     def __init__(self, csv_path, image_dir = None,jailbreak_method = None):
 
         
@@ -158,7 +158,8 @@ class SafeBenchDataset(torch.utils.data.Dataset):
             task_id = row['id']
             resource = row["from"]
             policy = row["policy"]
-            image_path = row["image_dir"]
+            buffer = row["image_dir"]
+            image_path = os.path.join(self.image_dir, f"{buffer}")
             question = row["figstep_query"]
         
             return {
@@ -175,7 +176,7 @@ class SafeBenchDataset(torch.utils.data.Dataset):
             task_id = row['id']
             resource = row["from"]
             policy = row["policy"]
-            image_path = "/dss/dssfs05/pn39qo/pn39qo-dss-0001/di93zun2/zhongyi/demo.jpg"
+            image_path = self.image_dir
             question = row["query"]
         
             return {
@@ -191,7 +192,7 @@ class SafeBenchDataset(torch.utils.data.Dataset):
             task_id = row['id']
             resource = row["from"]
             policy = row["policy"]
-            image_path = "/dss/dssfs05/pn39qo/pn39qo-dss-0001/di93zun2/zhongyi/image.png"
+            image_path = self.image_dir
             question = row["query"]
         
             return {
@@ -208,7 +209,7 @@ class SafeBenchDataset(torch.utils.data.Dataset):
             task_id = row['id']
             resource = row["from"]
             policy = row["policy"]
-            image_path = "/dss/dssfs05/pn39qo/pn39qo-dss-0001/di93zun2/zhongyi/image.png"
+            image_path = self.image_dir
             try:
                 question = row["cognitive_effect_to_cause"]
             except:
@@ -226,7 +227,7 @@ class SafeBenchDataset(torch.utils.data.Dataset):
             task_id = row['id']
             resource = row["from"]
             policy = row["policy"]
-            image_path = "/dss/dssfs05/pn39qo/pn39qo-dss-0001/di93zun2/zhongyi/image.png"
+            image_path = self.image_dir
             try:
                 question = row["cognitive_veiled_attack"]
             except:
