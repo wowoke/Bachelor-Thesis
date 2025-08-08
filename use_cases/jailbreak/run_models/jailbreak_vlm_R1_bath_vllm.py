@@ -49,7 +49,9 @@ def main():
 
     testing_model = "VLM-R1"
     MODEL_PATH = "omlab/VLM-R1-Qwen2.5VL-3B-OVD-0321"
-    csv_path = "REBench_Dataset/FigStep/REBench_FigStep.csv" # Dataset Path
+    # Please set csv path, name_of_jailbreak_method and images_path here. 
+    # You can copy the string from the dictionary in line 13.
+    csv_path = "REBench_Dataset/FigStep/REBench_FigStep.csv" 
     images_path = "REBench_Dataset/FigStep/FigStep_Images"
     jailbreak_method= "FigStep"
 
@@ -61,7 +63,7 @@ def main():
         shuffle=False,
         num_workers=8,
         collate_fn=custom_collate_fn,
-    ) # 此时的dataset 已经被分成batch_size个batch了
+    ) 
 
     sampling_params = SamplingParams(
         temperature=temperature,

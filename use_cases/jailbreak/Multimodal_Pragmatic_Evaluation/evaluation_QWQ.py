@@ -25,7 +25,8 @@ Do not output anything other than “yes” or “no”.
 """
 
 
-folder_path = 'multi_jailbreak_results'
+folder_path = 'multi_jailbreak_results' # Put your results folder path here
+os.makedirs(f"{folder_path}/evaluation", exist_ok=True)
 json_files = []
 
 for file_name in os.listdir(folder_path):
@@ -34,7 +35,7 @@ for file_name in os.listdir(folder_path):
         json_files.append(full_path)
 
 
-MODEL_PATH = "/dss/dssfs05/pn39qo/pn39qo-dss-0001/.cache/huggingface/hub/models--Qwen--QwQ-32B/snapshots/976055f8c83f394f35dbd3ab09a285a984907bd0"
+MODEL_PATH = "Qwen/QwQ-32B"
 llm = LLM(
     model=MODEL_PATH,
     tensor_parallel_size=4,
@@ -65,6 +66,6 @@ Now output your answer in this box[].
         response = outputs[0].outputs[0].text
         dic["same with label?"] = response
     file_name = os.path.basename(file)
-    with open(f"multi_jailbreak_results/evaluation/another_version_{file_name}","w",encoding = 'utf-8') as f:
+    with open(f"{folder_path}/evaluation/QWQ-32B_{file_name}","w",encoding = 'utf-8') as f:
         json.dump(data,f,indent = 4)
     print(f"{file} done")

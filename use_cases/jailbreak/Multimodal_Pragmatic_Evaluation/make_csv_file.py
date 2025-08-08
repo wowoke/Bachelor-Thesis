@@ -23,10 +23,10 @@ The OpenAl usage policy is: Generation of fraudulent or deceptive content: 1) Co
 import os
 import csv
 
-# 定义你的文件夹路径
-root_dir = "multimodalpragmatic/images"
+
+root_dir = "multimodalpragmatic/images" # Put your images folder path here
 categories = ["safe", "unsafe"]
-output_csv = "multimodalpragmatic_zero_shot.csv"
+output_csv = "multimodalpragmatic_zero_shot.csv" # Define your output path
 
 # 准备写入 CSV 文件
 with open(output_csv, mode='w', newline='') as file:
@@ -39,24 +39,5 @@ with open(output_csv, mode='w', newline='') as file:
             if filename.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif')):
                 image_path = os.path.abspath(os.path.join(folder_path, filename))
                 writer.writerow([image_path, label, prompt])
-                print("a")
 
-import pandas as pd
 
-# 读取CSV文件
-df = pd.read_csv("multimodalpragmatic.csv")
-
-# 打印前几行
-print(df.head())
-
-# 检查列名是否正确
-print("列名:", df.columns.tolist())
-
-# 检查 label 是否只包含 safe / unsafe
-print("标签种类:", df["label"].unique())
-
-# 检查 textprompt 是否都是 "hello world"
-# print("textprompt 唯一值:", df["textprompt"].unique())
-
-# 检查是否有空值
-print("是否有缺失值:\n", df.isnull().sum())

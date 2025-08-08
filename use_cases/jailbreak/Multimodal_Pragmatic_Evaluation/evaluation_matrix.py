@@ -3,7 +3,8 @@ import json
 
 
 
-file = "multi_jailbreak_results/evaluation/answer_with_box/Visual_RFT.json"
+file = "Visual_RFT.json" # Put your file path here
+
 with open(file,"r",encoding="utf-8") as f:
     data = json.load(f)
 TP = 0

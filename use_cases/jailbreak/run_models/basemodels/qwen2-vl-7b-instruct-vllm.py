@@ -60,7 +60,7 @@ def main():
         repetition_penalty=repetition_penalty
     )
 
-    MODEL_PATH = "Qwen/Qwen2.5-VL-7B-Instruct"
+    MODEL_PATH = "Qwen/Qwen2-VL-7B-Instruct"
     testing_model = "Qwen2-vl-7B-Instruct"
     csv_path = "REBench/use_cases/jailbreak/FigStep/REBench_FigStep.csv" # Dataset Path
     images_path = "REBench_Dataset/FigStep/FigStep_Images"
