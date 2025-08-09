@@ -63,11 +63,11 @@ def main():
 
 
 
-    model = load_rmllm(testing_model=testing_model, model_path=model_path,image_dir = images_path)
+    model = load_rmllm(testing_model=testing_model, model_path=model_path)
     print("model loaded")
     # load dataset
     print("loading dataset")
-    eval_dataset = REBenchDataset(csv_path=csv_path,jailbreak_method = jailbreak_method)
+    eval_dataset = REBenchDataset(csv_path=csv_path,jailbreak_method = jailbreak_method,image_dir = images_path)
     
     eval_dataloader = torch.utils.data.DataLoader(
         eval_dataset,
@@ -96,9 +96,9 @@ def main():
             images
         )
         for i in range(batch_size):
-            print(i)
+
             id = task_ids[i]
-            print(f"id{id}")
+
             local_result[f"{id}"] = {
                 "original_query": original_query[i],
                 "jailbreak_query": questions[i],
@@ -115,7 +115,7 @@ def main():
         for d in all_results:
             for k, v in d.items():
                 merged_result[k] = v
-        with open(f"test_resulst/{testing_model}_{jailbreak_method}.json", "w",encoding= 'utf-8') as f:
+        with open(f"test_results/{testing_model}_{jailbreak_method}.json", "w",encoding= 'utf-8') as f:
             json.dump(merged_result,f,indent =4)
         print("json generated!")
     accelerator.end_training()
@@ -128,7 +128,7 @@ if __name__ == "__main__":
         if torch.distributed.is_available() and torch.distributed.is_initialized() is False:
             dist.init_process_group(
                 backend="nccl",
-                timeout=datetime.timedelta(seconds=14400)  # 设置为两小时
+                timeout=datetime.timedelta(seconds=7200)  # 设置为两小时
             )
     except:
         pass

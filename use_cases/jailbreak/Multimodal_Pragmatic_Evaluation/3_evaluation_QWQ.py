@@ -25,7 +25,7 @@ Do not output anything other than “yes” or “no”.
 """
 
 
-folder_path = 'multi_jailbreak_results' # Put your results folder path here
+folder_path = 'pragmatic_jailbreak_results' # Put your results folder path here
 os.makedirs(f"{folder_path}/evaluation", exist_ok=True)
 json_files = []
 

@@ -23,7 +23,7 @@ SYSTEM_PROMPT = (
 )
 
 class Visual_RFT(MLLMBaseModel):
-    def __init__(self, model_path, device="cuda:0"):
+    def __init__(self, model_path, device="auto"):
         super().__init__(model_path, device)
         self.accelerator = Accelerator()
         self.model = Qwen2VLForConditionalGeneration.from_pretrained(model_path, torch_dtype=torch.bfloat16).eval()
@@ -54,7 +54,7 @@ class Visual_RFT(MLLMBaseModel):
         initial_length = inputs['input_ids'].shape[1]
         inputs["processor"] = self.processor
         with torch.no_grad():
-            generated_ids = self.model.generate(**inputs, max_new_tokens=10000)
+            generated_ids = self.model.generate(**inputs, max_new_tokens=1024)
         response = self.processor.batch_decode(generated_ids[0][initial_length:], skip_special_tokens=True, clean_up_tokenization_spaces=False)
         response = "".join(response)
         return response

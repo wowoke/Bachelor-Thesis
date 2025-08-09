@@ -44,7 +44,7 @@ def custom_collate_fn(batch):
 
 def main():
     batch_size = 16
-    device_num = 1
+    device_num = 2
     temperature = 0
     top_p = 0.95
     max_tokens = 4096
@@ -53,9 +53,9 @@ def main():
 
 
     testing_model = "Skywork_R1V"
-    csv_path = "REBench/use_cases/jailbreak/FigStep/REBench_FigStep.csv" # Dataset Path
-    images_path = "REBench_Dataset/FigStep/FigStep_Images"
-    jailbreak_method= "FigStep"
+    csv_path = "REBench_Dataset/cognitive_overload/effect_to_cause/REBench_effect_to_cause.csv" # Dataset Path
+    images_path = "REBench_Dataset/image.png"
+    jailbreak_method= "cognitive_overload_effect_to_cause"
 
     eval_dataset = REBenchDataset(csv_path=csv_path,jailbreak_method =jailbreak_method,image_dir = images_path)
 
@@ -130,7 +130,7 @@ def main():
                 "from": resources[i],
                 "policy": policies[i]
             }
-    with open(f"test_resulst/{testing_model}_{jailbreak_method}.json", "w",encoding= 'utf-8') as f:
+    with open(f"test_results/{testing_model}_{jailbreak_method}.json", "w",encoding= 'utf-8') as f:
         json.dump(result,f,indent =4)
 
 if __name__ == '__main__':

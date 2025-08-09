@@ -84,9 +84,9 @@ def main():
     result = {}
     counter = 0
     for batch in tqdm(eval_dataloader):
-        counter +=1
-        if counter == 2:
-            break
+        # counter +=1
+        # if counter == 2:
+        #     break
         questions = batch["question"]
         images_path = batch["image"]
         task_ids = batch["task_id"]
@@ -129,7 +129,7 @@ def main():
                 "from": resources[i],
                 "policy": policies[i]
             }
-    with open(f"test_resulst/{testing_model}_{jailbreak_method}.json", "w",encoding= 'utf-8') as f:
+    with open(f"test_results/{testing_model}_{jailbreak_method}.json", "w",encoding= 'utf-8') as f:
         json.dump(result,f,indent =4)
 
 if __name__ == '__main__':

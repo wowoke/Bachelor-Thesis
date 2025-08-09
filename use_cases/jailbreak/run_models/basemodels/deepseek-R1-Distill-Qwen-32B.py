@@ -25,12 +25,7 @@ Jailbreak_Method_and_CSV_PATH= {
 
     'cognitive_overload_veiled_attack':"REBench_Dataset/cognitive_overload/veiled_attack/REBench_veiled_attack.csv",
     'veiled_attack_image': "REBench_Dataset/image.png",
-    
-    'FigStep': "REBench_Dataset/FigStep/REBench_FigStep.csv",
-    'FigStep_image_dir': "REBench_Dataset/FigStep/FigStep_Images",
 
-    'VRP': "REBench_Dataset/VRP/REBench_VRP.csv",
-    'VRP_image_dir': "REBench_Dataset/VRP/VRP_Images"
 }
 
 
@@ -75,9 +70,9 @@ def main():
     tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
 
     testing_model = "DeepSeek-R1-Distill-Qwen-32B"
-    csv_path = "REBench/use_cases/jailbreak/FigStep/REBench_FigStep.csv" # Dataset Path
-    images_path = "REBench_Dataset/FigStep/FigStep_Images"
-    jailbreak_method= "FigStep"
+    csv_path = "REBench_Dataset/Baseline/REBench_Baseline.csv" # Dataset Path
+    images_path = "REBench_Dataset/image.png"
+    jailbreak_method= "baseline"
 
 
 

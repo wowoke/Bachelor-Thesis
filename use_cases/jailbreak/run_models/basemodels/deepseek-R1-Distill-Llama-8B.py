@@ -25,11 +25,6 @@ Jailbreak_Method_and_CSV_PATH= {
     'cognitive_overload_veiled_attack':"REBench_Dataset/cognitive_overload/veiled_attack/REBench_veiled_attack.csv",
     'veiled_attack_image': "REBench_Dataset/image.png",
     
-    'FigStep': "REBench_Dataset/FigStep/REBench_FigStep.csv",
-    'FigStep_image_dir': "REBench_Dataset/FigStep/FigStep_Images",
-
-    'VRP': "REBench_Dataset/VRP/REBench_VRP.csv",
-    'VRP_image_dir': "REBench_Dataset/VRP/VRP_Images"
 }
 
 
@@ -47,7 +42,7 @@ def custom_collate_fn(batch):
 
 def main():
     batch_size = 16
-    device_num = 1
+    device_num = 2
     temperature = 0
     top_p = 0.01
     max_tokens = 4096
@@ -75,9 +70,9 @@ def main():
     tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
 
     testing_model = "DeepSeek-R1-Distill-Llama-8B"
-    csv_path = "REBench/use_cases/jailbreak/FigStep/REBench_FigStep.csv" # Dataset Path
-    images_path = "REBench_Dataset/FigStep/FigStep_Images"
-    jailbreak_method= "FigStep"
+    csv_path = "REBench_Dataset/Baseline/REBench_Baseline.csv" # Dataset Path
+    images_path = "REBench_Dataset/image.png"
+    jailbreak_method= "baseline"
 
 
 
@@ -131,7 +126,7 @@ def main():
                 "from": resources[i],
                 "policy": policies[i]
             }
-    with open(f"test_resulst/{testing_model}_{jailbreak_method}.json", "w",encoding= 'utf-8') as f:
+    with open(f"test_results/{testing_model}_{jailbreak_method}.json", "w",encoding= 'utf-8') as f:
         json.dump(result,f,indent =4)
     print(f"{jailbreak_method}-json generated!")
 if __name__ == '__main__':

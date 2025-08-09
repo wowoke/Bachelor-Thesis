@@ -3,6 +3,12 @@
 ├── CITATION.cff
 ├── docs
 │   └── source
+│       ├── cli.rst
+│       ├── conf.py
+│       ├── index.rst
+│       ├── installation.rst
+│       ├── model.rst
+│       └── usage.rst
 ├── LICENSE
 ├── MANIFEST.in
 ├── pyproject.toml
@@ -21,29 +27,15 @@
 │   │   ├── cli.py
 │   │   ├── constants.py
 │   │   ├── datasets
-│   │   │   ├── dataset.py
-│   │   │   ├── __init__.py
-│   │   │   ├── jailbreaks
-│   │   │   └── __pycache__
 │   │   ├── hydra_files
-│   │   │   ├── config.yaml
-│   │   │   ├── data_base
-│   │   │   ├── jailbreak_methods
-│   │   │   ├── judge_model
-│   │   │   └── model
 │   │   ├── __init__.py
 │   │   ├── __main__.py
 │   │   ├── metrics
-│   │   │   ├── hallucination
-│   │   │   ├── __init__.py
-│   │   │   ├── jailbreak
-│   │   │   └── __pycache__
-│   │   └── models
-│   │       ├── __init__.py
-│   │       ├── llms
-│   │       ├── mllms
-│   │       ├── __pycache__
-│   │       └── rmllms
+│   │   ├── models
+│   │   ├── __pycache__
+│   │   ├── py.typed
+│   │   ├── tasks
+│   │   └── version.py
 │   └── resp_gen_ai.egg-info
 ├── structure.txt
 ├── tests
@@ -55,45 +47,11 @@
     ├── evalutor_strong_reject_one_by_one.py
     ├── jailbreak
     │   ├── baseline
-    │   │   └── baseline.csv
     │   ├── cognitive_overload
-    │   │   ├── effect_to_cause
-    │   │   └── veiled_attack
     │   ├── FigStep
     │   ├── Multimodal_Pragmatic_Evaluation
-    │   │   ├── evaluation_matrix.py
-    │   │   ├── evaluation_QWQ.py
-    │   │   ├── make_csv_file.py
-    │   │   └── run_code.py
     │   ├── run_models
-    │   │   ├── basemodels
-    │   │   ├── jailbreak_pku_dsv_hf_batch.py
-    │   │   ├── jailbreak_qvq_72b_vllm_batch.py
-    │   │   ├── jailbreak_skywork_R1V-vllm_batch.py
-    │   │   ├── jailbreak_visual_RFT_batch_hf.py
-    │   │   ├── jailbreak_vlm_R1_bath_vllm.py
-    │   │   └── jalbreak_open_r1_multimodal_hf_batch.py
     │   └── VRP_query_specific
     └── load_inference
-        ├── calculate_asr_lm_granite_3.2_5b.py
-        ├── calculate_asr_lm_llama_guard.py
-        ├── llms
-        │   ├── run_chat_glm.py
-        │   ├── run_llama3.py
-        │   └── run_llama_guard3_8b.py
-        ├── mllms
-        │   ├── run_idefics.py
-        │   ├── run_llava.py
-        │   ├── run_minigpt4.py
-        │   ├── run_pku-ds-v.py
-        │   └── run_qwen-vl-chat.py
-        ├── reasoning-mllms
-        │   ├── run_eureka32b.py
-        │   ├── run_open_r1_multimodel.py
-        │   ├── run_pku-ds-v.py
-        │   ├── run_skywork_R1V.py
-        │   ├── run_skywork_R1V_with-vllm.py
-        │   └── run_visual_RFT.py
-        └── test_cases
 
 

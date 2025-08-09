@@ -58,9 +58,9 @@ def main():
     model_path = "Zery/Qwen2-VL-7B_visual_rft_lisa_IoU_reward"
 
 
-    csv_path = "REBench/use_cases/jailbreak/FigStep/REBench_FigStep.csv" # Dataset Path
-    images_path = "REBench_Dataset/FigStep/FigStep_Images"
-    jailbreak_method= "FigStep"
+    csv_path = "REBench_Dataset/Baseline/REBench_Baseline.csv" # Dataset Path
+    images_path = "REBench_Dataset/image.png"
+    jailbreak_method= "baseline"
 
 
     print("loading model")
@@ -110,7 +110,7 @@ def main():
         for d in all_results:
             for k, v in d.items():
                 merged_result[k] = v
-        with open(f"test_resulst/{testing_model}_{jailbreak_method}.json", "w",encoding= 'utf-8') as f:
+        with open(f"test_results/{testing_model}_{jailbreak_method}.json", "w",encoding= 'utf-8') as f:
             json.dump(merged_result,f,indent =4)
         print("json generated!")
     accelerator.end_training()
@@ -119,6 +119,7 @@ def main():
 if __name__ == "__main__":
     import torch.distributed as dist
     import datetime
+    # os.environ["TOKENIZERS_PARALLELISM"] = "false"
     try:
         if torch.distributed.is_available() and torch.distributed.is_initialized() is False:
             dist.init_process_group(

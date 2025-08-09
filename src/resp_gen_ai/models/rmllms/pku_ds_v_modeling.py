@@ -6,8 +6,9 @@ from transformers import AutoProcessor, LlavaForConditionalGeneration
 from .base import MLLMBaseModel
 
 class RMLLMPkuDsV(MLLMBaseModel):
-    def __init__(self, model_path, device="cuda:0"):
+    def __init__(self, model_path, device="auto"):
         super().__init__(model_path, device)
+        self.processor = AutoProcessor.from_pretrained(model_path,padding_side = 'left')
         self.accelerator = Accelerator()
         self.model = LlavaForConditionalGeneration.from_pretrained(
             model_path,
@@ -15,7 +16,7 @@ class RMLLMPkuDsV(MLLMBaseModel):
             low_cpu_mem_usage=True,
         )
         self.model = self.accelerator.prepare(self.model)
-        self.processor = AutoProcessor.from_pretrained(model_path,padding_side = 'left')
+        
         self.unwrapped_model = self.accelerator.unwrap_model(self.model)
 
 

@@ -79,9 +79,9 @@ def main():
     answer = []
     counter = 0
     for batch in tqdm(eval_dataloader):
-        counter += 1
-        if counter == 2:
-            break
+        # counter += 1
+        # if counter == 2:
+        #     break
         questions = batch["question"]
         images = batch["image"]
         task_ids = batch["task_id"]
@@ -110,7 +110,7 @@ def main():
         for d in all_results:
             for k, v in d.items():
                 merged_result[k] = v
-        with open(f"test_resulst/{testing_model}_{jailbreak_method}.json", "w",encoding= 'utf-8') as f:
+        with open(f"test_results/{testing_model}_{jailbreak_method}.json", "w",encoding= 'utf-8') as f:
             json.dump(merged_result,f,indent =4)
         print("json generated!")
     accelerator.end_training()
@@ -123,7 +123,7 @@ if __name__ == "__main__":
         if torch.distributed.is_available() and torch.distributed.is_initialized() is False:
             dist.init_process_group(
                 backend="nccl",
-                timeout=datetime.timedelta(seconds=14400)  # 设置为两小时
+                timeout=datetime.timedelta(seconds=7200)  # 设置为两小时
             )
     except:
         print("WARNING:Waiting Time did not reset.")

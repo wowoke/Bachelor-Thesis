@@ -5,8 +5,8 @@ import torch
 from PIL import Image
 from accelerate import Accelerator
 
-min_pixels = 256*28*28
-max_pixels = 1280*28*28
+min_pixels=256*28*28
+max_pixels= 1280*28*28
 
 SYSTEM_PROMPT = (
     "A conversation between User and Assistant. The user asks a question, and the Assistant solves it. The assistant "
@@ -20,7 +20,8 @@ class open_r1_multimodal(MLLMBaseModel):
         self.accelerator = Accelerator()
         self.model = Qwen2VLForConditionalGeneration.from_pretrained(model_path, torch_dtype=torch.bfloat16, device_map=self.accelerator.device).eval()
         self.model = self.accelerator.prepare(self.model)
-        self.processor = AutoProcessor.from_pretrained(model_path,use_fast=True)
+        self.processor = AutoProcessor.from_pretrained(model_path,use_fast = True,
+                                                       size={"shortest_edge": 2048, "longest_edge": 2048},)
         self.unwrapped_model = self.accelerator.unwrap_model(self.model)
 
     def generate(self, questions, images):
@@ -54,7 +55,7 @@ class open_r1_multimodal(MLLMBaseModel):
 
         # Inference: Generation of the output
         with torch.no_grad():
-            generated_ids = self.unwrapped_model.generate(**inputs, max_new_tokens=4096,max_length=1024, use_cache=True)
+            generated_ids = self.unwrapped_model.generate(**inputs, max_new_tokens=4096, use_cache=True)
         generated_ids_trimmed = [
             out_ids[len(in_ids) :] for in_ids, out_ids in zip(inputs.input_ids, generated_ids)
         ]
