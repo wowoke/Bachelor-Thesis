@@ -114,7 +114,7 @@ accelerate config
 ```
 
 This step will generate a `.yaml` configuration file under the default path.  
-Based on your actual setup (e.g., number of GPUs), choose appropriate options.
+Based on your actual setup (e.g., number of GPUs), choose appropriate options. You can refer to the default_config.yaml file, which contains the settings we use.
 
 Then launch the script using:
 
